@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sivasankari Muthukrishnan | Web Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#f8f6f2;--bg2:#f0ede7;--dark:#141210;--dark2:#1e1b18;
+      --accent:#b5622e;--accent2:#d4835a;--accent3:#e8b49a;
+      --text:#2c2825;--sub:#6b6460;--border:#ddd9d3;--card:#ffffff;--radius:14px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:20px 64px;background:rgba(248,246,242,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--dark);letter-spacing:1px}
+    .nav-logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:36px;align-items:center}
+    .nav-links a{text-decoration:none;font-size:12px;font-weight:600;color:var(--sub);letter-spacing:1.5px;text-transform:uppercase;transition:color 0.25s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-cta{padding:10px 24px;background:var(--dark);color:#fff;border-radius:50px;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:0.5px;transition:all 0.3s}
+    .nav-cta:hover{background:var(--accent)}
+
+    /* HERO */
+    #home{min-height:100vh;display:grid;grid-template-columns:1.1fr 0.9fr;align-items:center;padding:120px 64px 80px;gap:80px;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;top:50%;right:-100px;transform:translateY(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(181,98,46,0.07) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+    .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+    .eyebrow-line{width:32px;height:1.5px;background:var(--accent)}
+    .eyebrow-text{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+    .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5.5vw,70px);font-weight:300;line-height:1.08;color:var(--dark);letter-spacing:-1.5px;margin-bottom:10px}
+    .hero-name strong{font-weight:700}
+    .hero-name em{font-style:italic;color:var(--accent)}
+    .hero-role{font-size:14px;font-weight:500;color:var(--sub);letter-spacing:2px;text-transform:uppercase;margin-bottom:28px}
+    .hero-desc{font-size:15px;line-height:1.9;color:var(--sub);max-width:480px;margin-bottom:40px}
+    .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+    .btn-primary{padding:14px 30px;background:var(--dark);color:#fff;border-radius:4px;font-size:13px;font-weight:600;text-decoration:none;letter-spacing:0.8px;transition:all 0.3s;display:inline-flex;align-items:center;gap:8px}
+    .btn-primary:hover{background:var(--accent);transform:translateY(-2px)}
+    .btn-ghost{padding:14px 30px;background:transparent;color:var(--dark);border:1.5px solid var(--border);border-radius:4px;font-size:13px;font-weight:600;text-decoration:none;letter-spacing:0.8px;transition:all 0.3s}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+    .hero-cards{display:flex;flex-direction:column;gap:14px}
+    .hcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;display:flex;align-items:center;gap:16px;transition:all 0.3s;cursor:default}
+    .hcard:hover{border-color:var(--accent);transform:translateX(8px);box-shadow:0 8px 32px rgba(181,98,46,0.08)}
+    .hcard-icon{width:44px;height:44px;border-radius:10px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+    .hcard-body h4{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:3px}
+    .hcard-body p{font-size:12px;color:var(--sub)}
+    .hcard-tag{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;white-space:nowrap}
+    .tag-green{background:rgba(0,180,100,0.1);color:#00a855}
+    .tag-blue{background:rgba(0,120,255,0.1);color:#0066cc}
+    .tag-orange{background:rgba(181,98,46,0.1);color:var(--accent)}
+
+    /* SECTIONS */
+    section{padding:96px 64px}
+    .alt{background:var(--bg2)}
+    .s-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .s-eyebrow-line{width:22px;height:1.5px;background:var(--accent)}
+    .s-eyebrow-text{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+    .s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,50px);font-weight:600;color:var(--dark);letter-spacing:-1px;line-height:1.15;margin-bottom:48px}
+    .s-title em{font-style:italic;color:var(--accent)}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:72px;align-items:start}
+    .about-p{font-size:15px;line-height:1.95;color:var(--sub);margin-bottom:18px}
+    .edu-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-top:28px}
+    .edu-box-title{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dark);margin-bottom:20px}
+    .edu-row{padding:16px 0;border-bottom:1px solid var(--border)}
+    .edu-row:last-child{border-bottom:none;padding-bottom:0}
+    .edu-deg{font-size:15px;font-weight:600;color:var(--dark);margin-bottom:4px}
+    .edu-school{font-size:13px;color:var(--accent);font-weight:500;margin-bottom:3px}
+    .edu-yr{font-size:12px;color:var(--sub)}
+    .about-stats{display:flex;flex-direction:column;gap:16px}
+    .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all 0.3s}
+    .stat-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+    .stat-card.dark{background:var(--dark);border:none}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--accent);line-height:1}
+    .stat-lbl{font-size:13px;color:var(--sub);margin-top:4px;font-weight:500}
+    .stat-card.dark .stat-lbl{color:rgba(255,255,255,0.4)}
+    .stat-card.dark p{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.5);margin-top:10px}
+
+    /* SKILLS */
+    .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .skill-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all 0.3s;position:relative;overflow:hidden}
+    .skill-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent3));transform:scaleX(0);transition:transform 0.3s;transform-origin:left}
+    .skill-box:hover::after{transform:scaleX(1)}
+    .skill-box:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.07)}
+    .skill-box-icon{font-size:28px;margin-bottom:14px}
+    .skill-box-title{font-size:15px;font-weight:600;color:var(--dark);margin-bottom:16px}
+    .pills{display:flex;flex-wrap:wrap;gap:7px}
+    .pill{padding:5px 12px;border-radius:4px;background:var(--bg2);font-size:12px;font-weight:500;color:var(--text);border:1px solid var(--border);transition:all 0.2s;cursor:default}
+    .pill:hover{background:var(--accent);color:white;border-color:var(--accent)}
+
+    /* PROJECTS */
+    .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .proj-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.3s}
+    .proj-card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(0,0,0,0.09)}
+    .proj-body{padding:32px 32px 0}
+    .proj-no{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+    .proj-emoji{font-size:38px;display:block;margin-bottom:14px}
+    .proj-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.2}
+    .proj-desc{font-size:14px;line-height:1.8;color:var(--sub);margin-bottom:20px}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
+    .proj-tag{padding:4px 12px;border-radius:4px;background:var(--bg2);font-size:11px;font-weight:600;color:var(--sub);border:1px solid var(--border);letter-spacing:0.5px}
+    .proj-foot{padding:18px 32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+    .proj-link{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap 0.2s}
+    .proj-link:hover{gap:12px}
+    .proj-badge{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px}
+    .badge-intern{background:rgba(0,180,100,0.1);color:#00a855}
+    .badge-fyp{background:rgba(181,98,46,0.1);color:var(--accent)}
+
+    /* CERTIFICATES */
+    .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .cert-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all 0.3s;position:relative;overflow:hidden}
+    .cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent3))}
+    .cert-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.07)}
+    .cert-icon{font-size:28px;margin-bottom:16px;margin-top:8px;display:block}
+    .cert-name{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.3}
+    .cert-org{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:6px}
+    .cert-meta{font-size:12px;color:var(--sub);line-height:1.7}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px}
+    .contact-intro{font-size:15px;line-height:1.9;color:var(--sub);margin-bottom:32px}
+    .contact-links{display:flex;flex-direction:column;gap:12px}
+    .clink{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:13px;font-weight:500;transition:all 0.3s}
+    .clink:hover{border-color:var(--accent);color:var(--accent);transform:translateX(4px)}
+    .clink-icon{font-size:18px}
+    .cform{background:var(--dark);border-radius:20px;padding:40px}
+    .cform h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:white;margin-bottom:28px}
+    .fg{margin-bottom:16px}
+    .fl{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;display:block}
+    .fi{width:100%;padding:12px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;font-size:14px;font-family:'Outfit',sans-serif;color:white;outline:none;transition:border 0.3s;resize:none}
+    .fi:focus{border-color:var(--accent)}
+    .fi::placeholder{color:rgba(255,255,255,0.2)}
+    .fsub{width:100%;padding:14px;background:var(--accent);color:white;border:none;border-radius:8px;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:all 0.3s;margin-top:8px;text-transform:uppercase}
+    .fsub:hover{background:var(--accent2)}
+
+    /* FOOTER */
+    footer{background:var(--dark2);padding:28px 64px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.05)}
+    footer p{font-size:13px;color:rgba(255,255,255,0.3)}
+    footer span{color:var(--accent)}
+    .flinks{display:flex;gap:24px}
+    .flinks a{font-size:11px;color:rgba(255,255,255,0.25);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color 0.3s}
+    .flinks a:hover{color:var(--accent)}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-delay{transition-delay:0.15s}
+    .reveal-delay2{transition-delay:0.3s}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      nav{padding:16px 20px}
+      .nav-links{display:none}
+      section{padding:60px 20px}
+      #home{grid-template-columns:1fr;padding:100px 20px 60px;gap:36px}
+      .about-grid,.contact-grid{grid-template-columns:1fr;gap:36px}
+      .skills-grid{grid-template-columns:1fr 1fr}
+      .proj-grid,.cert-grid{grid-template-columns:1fr}
+      footer{flex-direction:column;gap:12px;text-align:center;padding:24px 20px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">S<span>.</span>M</div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div>
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Open to Fresher Opportunities</span>
+    </div>
+    <h1 class="hero-name">
+      Siva<em>sankari</em><br/>
+      <strong>Muthukrishnan</strong>
+    </h1>
+    <p class="hero-role">Aspiring Web Developer</p>
+    <p class="hero-desc">
+      Final year BE Computer Science Engineering student from Oasys Institute of Technology, Trichy. Passionate about building real-world web and Android applications through hands-on projects and internships.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View My Projects →</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-cards">
+    <div class="hcard">
+      <div class="hcard-icon">⚡</div>
+      <div class="hcard-body">
+        <h4>HabitX App</h4>
+        <p>Android Habit Tracker — Final Year Project</p>
+      </div>
+      <span class="hcard-tag tag-orange">FYP</span>
+    </div>
+    <div class="hcard">
+      <div class="hcard-icon">🎓</div>
+      <div class="hcard-body">
+        <h4>CollegeAlert App</h4>
+        <p>CodeAlpha Internship Project</p>
+      </div>
+      <span class="hcard-tag tag-green">Internship</span>
+    </div>
+    <div class="hcard">
+      <div class="hcard-icon">🤖</div>
+      <div class="hcard-body">
+        <h4>Claude 101 Certificate</h4>
+        <p>Anthropic · March 2026</p>
+      </div>
+      <span class="hcard-tag tag-blue">Certified</span>
+    </div>
+    <div class="hcard">
+      <div class="hcard-icon">📊</div>
+      <div class="hcard-body">
+        <h4>Intro to Data Science</h4>
+        <p>Cisco · April 2026</p>
+      </div>
+      <span class="hcard-tag tag-blue">Certified</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="alt">
+  <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span class="s-eyebrow-text">About Me</span></div>
+  <div class="s-title">Passionate developer,<br/><em>lifelong learner.</em></div>
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="about-p">Hi! I'm <strong>Sivasankari Muthukrishnan</strong>, a final year BE Computer Science Engineering student at Oasys Institute of Technology, Trichy. I'm passionate about web development and building real-world applications.</p>
+      <p class="about-p">I recently completed my JavaScript course on Simplilearn, earned my Claude 101 certification from Anthropic, and completed Introduction to Data Science from Cisco. I'm currently doing an internship at CodeAlpha where I built the CollegeAlert Android app.</p>
+      <p class="about-p">I believe in <strong>learning by doing</strong>. Every project I build teaches me something new — from frontend development to Android apps with Kotlin. I'm eager to join a team where I can contribute and grow as a developer.</p>
+      <div class="edu-box">
+        <div class="edu-box-title"><span>🎓</span> Education</div>
+        <div class="edu-row">
+          <div class="edu-deg">BE — Computer Science Engineering</div>
+          <div class="edu-school">Oasys Institute of Technology, Trichy</div>
+          <div class="edu-yr">Final Year · Expected 2025–2026</div>
+        </div>
+        <div class="edu-row">
+          <div class="edu-deg">Higher Secondary (12th Grade)</div>
+          <div class="edu-school">Tamil Nadu State Board</div>
+          <div class="edu-yr">Completed</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-stats reveal reveal-delay">
+      <div class="stat-card">
+        <div class="stat-num">2+</div>
+        <div class="stat-lbl">Real Projects Built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-lbl">Certifications Earned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-lbl">Internship Completed</div>
+      </div>
+      <div class="stat-card dark">
+        <div class="stat-num" style="color:var(--accent2)">∞</div>
+        <div class="stat-lbl">Curiosity & Passion</div>
+        <p>Always exploring new technologies and building projects to strengthen skills every single day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span class="s-eyebrow-text">Skills</span></div>
+  <div class="s-title">Technologies <em>I work with.</em></div>
+  <div class="skills-grid reveal">
+    <div class="skill-box">
+      <div class="skill-box-icon">🌐</div>
+      <div class="skill-box-title">Frontend Development</div>
+      <div class="pills">
+        <span class="pill">HTML5</span>
+        <span class="pill">CSS3</span>
+        <span class="pill">JavaScript</span>
+        <span class="pill">Responsive Design</span>
+        <span class="pill">Chart.js</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-box-icon">📱</div>
+      <div class="skill-box-title">Mobile Development</div>
+      <div class="pills">
+        <span class="pill">Android Studio</span>
+        <span class="pill">Kotlin</span>
+        <span class="pill">WebView</span>
+        <span class="pill">APK Build</span>
+        <span class="pill">LocalStorage</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-box-icon">🛠️</div>
+      <div class="skill-box-title">Tools & Others</div>
+      <div class="pills">
+        <span class="pill">Git</span>
+        <span class="pill">GitHub</span>
+        <span class="pill">VS Code</span>
+        <span class="pill">MS Excel</span>
+        <span class="pill">SQL</span>
+        <span class="pill">Data Science</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="alt">
+  <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span class="s-eyebrow-text">Projects</span></div>
+  <div class="s-title">Things <em>I've built.</em></div>
+  <div class="proj-grid reveal">
+    <div class="proj-card">
+      <div class="proj-body">
+        <div class="proj-no">Project · 01</div>
+        <span class="proj-emoji">⚡</span>
+        <div class="proj-title">HabitX — Habit Tracker App</div>
+        <div class="proj-desc">A futuristic Android habit tracking app with streak system, weekly analytics chart, AI habit coach chatbot, daily reminders, achievements & badges, user login, journal, and dark/light mode. Built from scratch and installed on a real Android phone.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">HTML</span>
+          <span class="proj-tag">CSS</span>
+          <span class="proj-tag">JavaScript</span>
+          <span class="proj-tag">Kotlin</span>
+          <span class="proj-tag">Android Studio</span>
+          <span class="proj-tag">Chart.js</span>
+        </div>
+      </div>
+      <div class="proj-foot">
+        <a href="https://github.com/sivasankarimuthu26-create/HabitX" class="proj-link" target="_blank">View on GitHub →</a>
+        <span class="proj-badge badge-fyp">Final Year Project</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-body">
+        <div class="proj-no">Project · 02</div>
+        <span class="proj-emoji">🎓</span>
+        <div class="proj-title">CollegeAlert — Campus Alert App</div>
+        <div class="proj-desc">A professional Android app that keeps students informed about campus events — exams, seminars, fests and important notices. Features real-time event feed, monthly calendar, 7-day countdown alerts, smart search & filter, and modern UI.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">HTML</span>
+          <span class="proj-tag">CSS</span>
+          <span class="proj-tag">JavaScript</span>
+          <span class="proj-tag">Kotlin</span>
+          <span class="proj-tag">Android Studio</span>
+        </div>
+      </div>
+      <div class="proj-foot">
+        <a href="https://github.com/sivasankarimuthu26-create/CodeAlpha_CollegeAlert" class="proj-link" target="_blank">View on GitHub →</a>
+        <span class="proj-badge badge-intern">Internship Project</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span class="s-eyebrow-text">Certificates & Internships</span></div>
+  <div class="s-title">Credentials <em>& Achievements.</em></div>
+  <div class="cert-grid reveal">
+    <div class="cert-card">
+      <span class="cert-icon">📱</span>
+      <div class="cert-name">App Development Internship</div>
+      <div class="cert-org">CodeAlpha</div>
+      <div class="cert-meta">2026 · Android App Development<br/>Project: CollegeAlert Campus Alert App</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-icon">🤖</span>
+      <div class="cert-name">Certificate of Completion: Claude 101</div>
+      <div class="cert-org">Anthropic</div>
+      <div class="cert-meta">Issued: March 2026<br/>Credential ID: ion6hk9q8n49</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-icon">📊</span>
+      <div class="cert-name">Introduction to Data Science</div>
+      <div class="cert-org">Cisco</div>
+      <div class="cert-meta">Issued: April 2026<br/>Data Science Fundamentals</div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-icon">💻</span>
+      <div class="cert-name">JavaScript Programming Course</div>
+      <div class="cert-org">Simplilearn</div>
+      <div class="cert-meta">2026 · JavaScript Fundamentals to Advanced<br/>Completed Full Course</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt">
+  <div class="s-eyebrow"><div class="s-eyebrow-line"></div><span class="s-eyebrow-text">Contact</span></div>
+  <div class="s-title">Let's work <em>together.</em></div>
+  <div class="contact-grid reveal">
+    <div>
+      <p class="contact-intro">I'm currently looking for fresher opportunities in web development. Whether you have a job, internship, freelance project, or just want to connect — I'd love to hear from you!</p>
+      <div class="contact-links">
+        <a href="mailto:sivasankarimuthu26@gmail.com" class="clink">
+          <span class="clink-icon">📧</span>sivasankarimuthu26@gmail.com
+        </a>
+        <a href="https://github.com/sivasankarimuthu26-create" class="clink" target="_blank">
+          <span class="clink-icon">💻</span>github.com/sivasankarimuthu26-create
+        </a>
+        <a href="https://linkedin.com" class="clink" target="_blank">
+          <span class="clink-icon">🔗</span>LinkedIn — Sivasankari Muthukrishnan
+        </a>
+        <a href="#" class="clink">
+          <span class="clink-icon">📍</span>Trichy, Tamil Nadu, India
+        </a>
+      </div>
+    </div>
+    <div class="cform">
+      <h3>Send a Message</h3>
+      <div class="fg"><label class="fl">Your Name</label><input type="text" class="fi" placeholder="John Doe"/></div>
+      <div class="fg"><label class="fl">Email Address</label><input type="email" class="fi" placeholder="john@example.com"/></div>
+      <div class="fg"><label class="fl">Subject</label><input type="text" class="fi" placeholder="Job opportunity / Project collaboration"/></div>
+      <div class="fg"><label class="fl">Message</label><textarea class="fi" rows="4" placeholder="Tell me about the opportunity..."></textarea></div>
+      <button class="fsub" onclick="alert('Thank you for reaching out! I will get back to you soon 😊')">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Sivasankari Muthukrishnan</span> · All rights reserved</p>
+  <div class="flinks">
+    <a href="https://github.com/sivasankarimuthu26-create" target="_blank">GitHub</a>
+    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    <a href="mailto:sivasankarimuthu26@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Active nav
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const links = document.querySelectorAll('.nav-links a');
+    let current = '';
+    sections.forEach(s => { if(window.scrollY >= s.offsetTop - 120) current = s.id; });
+    links.forEach(l => { l.style.color = l.getAttribute('href') === `#${current}` ? 'var(--accent)' : ''; });
+  });
+</script>
+</body>
+</html>
